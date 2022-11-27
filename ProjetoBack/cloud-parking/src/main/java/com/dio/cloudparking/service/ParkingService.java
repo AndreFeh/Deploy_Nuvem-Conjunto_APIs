@@ -25,6 +25,8 @@ public class ParkingService {
         parkingMap.put(id3, parking3);
     }
 
+    private String id;
+
     //    GET ALL
     public List<Parking> findAll() {
         /*LEMBRANDO Arrays.asList -> adiciona manualmente os itens dentro do construtor, por isso Contrutor Vazio*/
@@ -54,6 +56,8 @@ public class ParkingService {
     }
 
     public Parking deleteId(String id) {
+        deleteId(id).setExitDate(LocalDateTime.now());
         return parkingMap.remove(id);
     }
+
 }

@@ -62,4 +62,11 @@ public class ParkingController {
         ParkingDTO result = parkingMapper.convertForParkingDTO(parkingDelete);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(result);
     }
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<ParkingDTO> putID(@PathVariable String id){
+//        Parking parkingPut = parkingService.putId(id);
+//        ParkingDTO result = parkingMapper.convertForParkingDTO(parkingPut);
+//        return ResponseEntity.status(HttpStatus.OK).body(result);
+//    }
 }
