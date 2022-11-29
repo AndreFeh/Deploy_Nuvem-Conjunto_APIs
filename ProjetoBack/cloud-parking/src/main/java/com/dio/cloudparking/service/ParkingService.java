@@ -2,6 +2,7 @@ package com.dio.cloudparking.service;
 
 import com.dio.cloudparking.controller.mapper.ParkingMapper;
 import com.dio.cloudparking.entity.Parking;
+import com.dio.cloudparking.exception.ParkingNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -41,8 +42,13 @@ public class ParkingService {
     }
 
     //    GET ONE
-    public Parking findById(String id) {
-        return parkingMap.get(id);
+    public Parking findById(String id) { /*Fazer tratativa de erros*/
+//        return parkingMap.get(id);
+        Parking parking = parkingMap.get(id);
+        if (parking == null){
+            throw new ParkingNotFoundException(id);
+        }
+        return parking;
     }
 
     //    POST

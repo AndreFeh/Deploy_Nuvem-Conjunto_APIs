@@ -5,7 +5,8 @@ import com.dio.cloudparking.dto.ParkingDTO;
 import com.dio.cloudparking.dto.ParkingRequisicoesDTO;
 import com.dio.cloudparking.entity.Parking;
 import com.dio.cloudparking.service.ParkingService;
-import org.apache.coyote.Response;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/parking")
+@Api("Parking Controller")
 public class ParkingController {
 
     /*PRIVATE É DEFAULT, NAO NECESSARIO DECLARAR*/
@@ -30,6 +32,7 @@ public class ParkingController {
     @GetMapping
     /*TODO/-> SÓ LIST É UMA MÁ PRATICA, ALTERAR PARA ResponseEntity*/
 //    public List<ParkingDTO> findAll(){ /*Como Agora Editado para ParkingDTO, reeditar o retorno*/
+    @ApiOperation("Get All")
     public ResponseEntity<List<ParkingDTO>> findAll(){
 //        return parkingService.findAll();
         List<Parking>parkingList = parkingService.findAll();
@@ -38,14 +41,16 @@ public class ParkingController {
         return ResponseEntity.ok(result);
     }
 
+    @ApiOperation("Get ID")
     @GetMapping("/{id}")
     public ResponseEntity<ParkingDTO>findById(@PathVariable String id){
-        Parking parkingId = parkingService.findById(id);
+        Parking parkingId = parkingService.findById(id); // quando buscar um Id inexistente, fazer a tratativa de erro em Service
         ParkingDTO /*Retorna um ...*/ result = parkingMapper.convertForParkingDTO(parkingId);
         return ResponseEntity.ok(result);
     }
 
     @PostMapping
+    @ApiOperation("Post Parking")
     public ResponseEntity<ParkingDTO>create(@RequestBody ParkingRequisicoesDTO parkingRequisicoesDTO){ /*Consultar no Word, oq foi feito*/
 //        Para fazer essa criação, quero converter um DTO em um Parking, para isso, ou fazer a classe Convert, ou...
         Parking parkingCreate = parkingMapper.parkingCreateDTO(parkingRequisicoesDTO); //Converter para DTO
@@ -55,7 +60,9 @@ public class ParkingController {
 //        return ResponseEntity.status(HttpStatus.OK).body(result);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
+
     @DeleteMapping("/{id}")
+    @ApiOperation("Delete Parking")
 //    HAVIA COLOCADO COM @RequestParam, com esse Annotation ele pede esse parametro no BODY FORM-DATA
     public ResponseEntity<ParkingDTO> deleteID(@PathVariable String id){
         Parking parkingDelete = parkingService.deleteId(id);
