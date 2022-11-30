@@ -61,19 +61,30 @@ public class ParkingController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
+
+//    HAVIA COLOCADO COM @RequestParam, com esse Annotation ele pede esse parametro no BODY FORM-DATA
+//    Nao tem por que deixar o Response Entity com parking DTO pois ele vai retornar um objeto deletado = obj vazio
+//
+//    public ResponseEntity/*<ParkingDTO>*/ deleteID(@PathVariable String id){
+//        Parking parkingDelete = parkingService.deleteId(id);
+//        ParkingDTO result = parkingMapper.convertForParkingDTO(parkingDelete);
+//        return ResponseEntity.status(HttpStatus.ACCEPTED).body(result);
+//    }
+
+    //REFAZENDO
     @DeleteMapping("/{id}")
     @ApiOperation("Delete Parking")
-//    HAVIA COLOCADO COM @RequestParam, com esse Annotation ele pede esse parametro no BODY FORM-DATA
-    public ResponseEntity<ParkingDTO> deleteID(@PathVariable String id){
-        Parking parkingDelete = parkingService.deleteId(id);
-        ParkingDTO result = parkingMapper.convertForParkingDTO(parkingDelete);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(result);
+    public ResponseEntity deleteID(@PathVariable String id){
+        parkingService.deleteId(id);
+        return ResponseEntity.noContent().build();
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<ParkingDTO> putID(@PathVariable String id){
-//        Parking parkingPut = parkingService.putId(id);
-//        ParkingDTO result = parkingMapper.convertForParkingDTO(parkingPut);
-//        return ResponseEntity.status(HttpStatus.OK).body(result);
-//    }
+    @PutMapping("/{id}")
+    @ApiOperation("Put Parking")
+    public ResponseEntity<ParkingDTO>update(@PathVariable String id, @RequestBody ParkingRequisicoesDTO parkingRequisicoesDTO){ /*Consultar no Word, oq foi feito*/
+        Parking parkingUpdate = parkingMapper.parkingCreateDTO(parkingRequisicoesDTO); //Converter para DTO
+        Parking parkingPut = parkingService.update(id, parkingUpdate);
+        ParkingDTO result = parkingMapper.convertForParkingDTO(parkingPut); //Converter para Parking
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
 }

@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "45d9b114-c8bd-4186-a98e-81776af59698",
+		"name": "Parking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20245002"
+	},
+	"item": [
+		{
+			"name": "GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/parking/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPorID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/parking/87b87820 2a66 43c6 997b a6892052838e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking",
+						"87b87820 2a66 43c6 997b a6892052838e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"license\":\"RBF-2774\",\r\n    \"state\":\"PR\",\r\n    \"model\":\"Clio\",\r\n    \"color\":\"Bege\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/parking/87b87820 2a66 43c6 997b a6892052838e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking",
+						"87b87820 2a66 43c6 997b a6892052838e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/parking/001c3193 ad53 465c a303 5de46198a97d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking",
+						"001c3193 ad53 465c a303 5de46198a97d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"color\":\"Vermelho - Bordo\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/parking/87b87820 2a66 43c6 997b a6892052838e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking",
+						"87b87820 2a66 43c6 997b a6892052838e"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

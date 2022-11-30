@@ -61,9 +61,20 @@ public class ParkingService {
         return parkingCreate;
     }
 
-    public Parking deleteId(String id) {
-        deleteId(id).setExitDate(LocalDateTime.now());
-        return parkingMap.remove(id);
+//    public Parking deleteId(String id) {
+//        deleteId(id).setExitDate(LocalDateTime.now());
+//        return parkingMap.remove(id);
+//    }
+
+    public void deleteId(String id){
+        Parking parkingDelete = findById(id);
+        parkingMap.remove(id);
     }
 
+    public Parking update(String id, Parking parkingUpdate) {
+        Parking updateColor = findById(id);
+        updateColor.setColor(parkingUpdate.getColor());
+        parkingMap.replace(id, updateColor); /*Pegar o ID e redefinir o objeto Color para ele*/
+        return updateColor;
+    }
 }
