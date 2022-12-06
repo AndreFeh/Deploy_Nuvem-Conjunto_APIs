@@ -4,6 +4,8 @@ import com.dio.cloudparking.entity.Parking;
 import com.dio.cloudparking.exception.ParkingNotFoundException;
 import com.dio.cloudparking.repository.ParkingRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -34,6 +36,7 @@ public class ParkingService {
     }
 
     //    GET ALL
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<Parking> findAll() {
         /*LEMBRANDO Arrays.asList -> adiciona manualmente os itens dentro do construtor, por isso Contrutor Vazio*/
 //        return Arrays.asList().add();
@@ -48,6 +51,7 @@ public class ParkingService {
     }
 
     //    GET ONE
+    @Transactional(readOnly = true)
     public Parking findById(String id) { /*Fazer tratativa de erros*/
 //        return parkingMap.get(id);
 /*        Parking parking = parkingMap.get(id);
@@ -61,6 +65,7 @@ public class ParkingService {
     }
 
     //    POST
+    @Transactional
     public Parking create(Parking parkingCreate) {
         /*Setar ID*/
         String uuid = getUUID();
@@ -76,12 +81,14 @@ public class ParkingService {
 //        return parkingMap.remove(id);
 //    }
 
+    @Transactional
     public void deleteId(String id){
         Parking parkingDelete = findById(id);
 /*        parkingMap.remove(id);*/
         parkingRepo.deleteById(id);
     }
 
+    @Transactional
     public Parking update(String id, Parking parkingUpdate) {
 //        Parking updateColor = findById(id);
 //        updateColor.setColor(parkingUpdate.getColor());
@@ -101,8 +108,12 @@ public class ParkingService {
         return parkingRepo;
     }
 
-
-    public Parking exit(String id) {
-        return null;
+    @Transactional
+    public Parking checkOut(String id) {
+        Parking parking = findById(id);             /*buscar o estacionado */
+        parking.setExitDate(LocalDateTime.now());   /*atualizar data de saida*/
+        parking.setBill(ParkingCheckout.getBill(parking));    /*calcular valor, com base no tempo estacionado*/
+        parkingRepo.save(parking);
+        return parking;
     }
 }
