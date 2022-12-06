@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "GetAll",
+			"name": "Buscar Todos",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -27,12 +27,12 @@
 			"response": []
 		},
 		{
-			"name": "GetPorID",
+			"name": "Busca por ID",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/parking/87b87820 2a66 43c6 997b a6892052838e",
+					"raw": "http://localhost:8080/parking/5683f9b9 f2b6 4f40 bd73 1fa914926d3d",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -40,20 +40,20 @@
 					"port": "8080",
 					"path": [
 						"parking",
-						"87b87820 2a66 43c6 997b a6892052838e"
+						"5683f9b9 f2b6 4f40 bd73 1fa914926d3d"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Post",
+			"name": "Entrando Veiculo",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"license\":\"RBF-2774\",\r\n    \"state\":\"PR\",\r\n    \"model\":\"Clio\",\r\n    \"color\":\"Bege\"\r\n}",
+					"raw": "{\r\n    \"license\":\"ASP-2683\",\r\n    \"state\":\"PR\",\r\n    \"model\":\"Logan \",\r\n    \"color\":\"Vermelho\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -61,15 +61,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/parking/87b87820 2a66 43c6 997b a6892052838e",
+					"raw": "http://localhost:8080/parking",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"parking",
-						"87b87820 2a66 43c6 997b a6892052838e"
+						"parking"
 					]
 				}
 			},
@@ -105,13 +104,13 @@
 			"response": []
 		},
 		{
-			"name": "Put",
+			"name": "Atualizacao do Veiculo",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"color\":\"Vermelho - Bordo\"}",
+					"raw": "{\r\n    \"license\":\"ASP-2683\",\r\n    \"state\":\"PR\",\r\n    \"model\":\"Logan \",\r\n    \"color\":\"Vermelho\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -119,7 +118,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/parking/87b87820 2a66 43c6 997b a6892052838e",
+					"raw": "http://localhost:8080/parking/5683f9b9 f2b6 4f40 bd73 1fa914926d3d",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -127,7 +126,27 @@
 					"port": "8080",
 					"path": [
 						"parking",
-						"87b87820 2a66 43c6 997b a6892052838e"
+						"5683f9b9 f2b6 4f40 bd73 1fa914926d3d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retirando Veiculo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/parking/88c2eb01 251e 409c b6e1 8b646d493f25",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking",
+						"88c2eb01 251e 409c b6e1 8b646d493f25"
 					]
 				}
 			},
